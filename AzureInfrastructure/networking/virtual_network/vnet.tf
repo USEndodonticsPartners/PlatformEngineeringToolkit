@@ -1,5 +1,5 @@
 resource "azurerm_virtual_network" "this" {
-  name                = "${module.naming.virtual_network.name}-${var.resource_settings.app_name}"
+  name                = "${module.naming.virtual_network.name}-${var.resource_settings.name}"
   location            = lookup(local.azure_locations, var.global_settings.primary_location, "ndl")
   resource_group_name = var.resource_settings.resource_group_name
   address_space       = var.resource_settings.address_space
