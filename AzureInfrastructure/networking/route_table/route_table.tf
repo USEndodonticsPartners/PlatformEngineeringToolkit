@@ -1,5 +1,5 @@
 resource "azurerm_route_table" "this" {
-  name                = var.resource_settings.name
+  name                = "${module.naming.route_table}-${var.resource_settings.name}"
   location            = lookup(local.azure_locations, var.global_settings.primary_location, "ndl")
   resource_group_name = var.resource_settings.resource_group_name
 
