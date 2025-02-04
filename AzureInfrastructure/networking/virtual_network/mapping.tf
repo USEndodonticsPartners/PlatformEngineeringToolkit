@@ -29,4 +29,3 @@ locals {
     WestUS_3        = "usw3"
   }
 }
-+
