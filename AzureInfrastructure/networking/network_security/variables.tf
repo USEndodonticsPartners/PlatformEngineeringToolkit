@@ -6,15 +6,18 @@ variable "resource_settings" {
   type = object({
     name                = string
     resource_group_name = string
-    ip_configuration = object({
-      name                = string
-      vip_address_version = optional(string, "IPv4")
-      subnet_id           = optional(string)
-      vip_allocation      = optional(string, "Dynamic")
-      public_ip_enabled   = optional(bool, false)
-      pip_id              = optional(string)
-      vip_address         = optional(string)
-    })
+    subnet_ids          = optional(map(string), {})
+    security_rules = optional(map(object({
+      name                       = string
+      priority                   = number
+      direction                  = string
+      access                     = string
+      protocol                   = string
+      source_port_range          = string
+      destination_port_range     = string
+      source_address_prefix      = string
+      destination_address_prefix = string
+    })), {})
     tags = any
   })
 }

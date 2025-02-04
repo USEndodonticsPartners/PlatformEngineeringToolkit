@@ -1,23 +1,29 @@
-resource "azurerm_network_interface" "this" {
-  name                = "${module.naming.network_interface.name}-${var.resource_settings.name}"
+resource "azurerm_network_security_group" "this" {
+  name                = module.naming.network_security_group.name
   location            = lookup(local.azure_locations, var.global_settings.primary_location, "ndl")
   resource_group_name = var.resource_settings.resource_group_name
 
-  ip_configuration {
-    name                          = var.resource_settings.ip_configuration.name
-    private_ip_address_version    = var.resource_settings.ip_configuration.vip_address_version
-    subnet_id                     = var.resource_settings.ip_configuration.vip_address_version == "IPv4" ? var.resource_settings.ip_configuration.subnet_id : ""
-    private_ip_address_allocation = var.resource_settings.ip_configuration.vip_allocation
-    public_ip_address_id          = var.resource_settings.ip_configuration.public_ip_enabled ? var.resource_settings.ip_configuration.pip_id : ""
-    private_ip_address            = var.resource_settings.ip_configuration.vip_allocation == "Static" ? var.resource_settings.ip_configuration.private_ip_address : ""
+  dynamic "security_rule" {
+    for_each = var.resource_settings.security_rules
+
+    content {
+      name                       = "${module.naming.network_security_group_rule.name}-${security_rule.value["name"]}"
+      priority                   = security_rule.value["priority"]
+      direction                  = security_rule.value["direction"]
+      access                     = security_rule.value["access"]
+      protocol                   = security_rule.value["protocol"]
+      source_port_range          = security_rule.value["source_port_range"]
+      destination_port_range     = security_rule.value["destination_port_range"]
+      source_address_prefix      = security_rule.value["source_address_prefix"]
+      destination_address_prefix = security_rule.value["destination_address_prefix"]
+    }
   }
 
   tags = local.tags
+}
 
-  timeouts {
-    create = local.timeouts.create
-    read   = local.timeouts.read
-    update = local.timeouts.update
-    delete = local.timeouts.delete
-  }
+resource "azurerm_subnet_network_security_group_association" "this" {
+  for_each                  = var.resource_settings.subnet_ids
+  subnet_id                 = each.value
+  network_security_group_id = azurerm_network_security_group.this.id
 }
