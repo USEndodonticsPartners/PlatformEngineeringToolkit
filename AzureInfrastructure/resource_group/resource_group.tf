@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "this" {
-  name     = "${module.naming.resource_group.name}-${var.resource_settings.application_name}"
+  name     = "${module.naming.resource_group.name}-${var.resource_settings.workload_name}"
   location = lookup(local.azure_locations, var.global_settings.primary_location, "ndl")
 
   tags = merge(local.tags, var.resource_settings.tags)

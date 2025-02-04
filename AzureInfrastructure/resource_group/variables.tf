@@ -9,7 +9,7 @@ variable "global_settings" {
 
 variable "resource_settings" {
   type = object({
-    application_name = string
+    workload_name = string
     tags = map(string)
   })
 }
