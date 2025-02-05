@@ -5,14 +5,14 @@ variable "global_settings" {
 variable "resource_settings" {
   type = object({
     local_network = object({
-      name = string
+      name                = string
       resource_group_name = string
-      id = string
+      id                  = string
     })
     remote_network = object({
-      name = string
+      name                = string
       resource_group_name = string
-      id = string
+      id                  = string
     })
   })
 }

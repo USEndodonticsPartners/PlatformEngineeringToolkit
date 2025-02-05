@@ -1,5 +1,5 @@
 resource "azurerm_virtual_machine_extension" "aad_join" {
-  count = var.resource_settings.session_host.count
+  count                = var.resource_settings.session_host.count
   name                 = "AADJoin"
   virtual_machine_id   = azurerm_windows_virtual_machine.this[count.index].id
   publisher            = "Microsoft.Compute"

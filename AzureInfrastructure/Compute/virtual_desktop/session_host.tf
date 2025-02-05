@@ -12,13 +12,13 @@ resource "azurerm_network_interface" "this" {
 }
 
 resource "azurerm_windows_virtual_machine" "this" {
-  count               =  var.resource_settings.session_host.count
-  name                = module.naming.virtual_machine.name_unique
-  resource_group_name = var.resource_settings.session_pool.resource_group_name
-  location            = lookup(local.azure_locations, var.global_settings.primary_location, "ndl")
-  size                = var.resource_settings.session_pool.vm_size
-  admin_username      = var.resource_settings.session_pool.admin_username
-  admin_password      = var.resource_settings.session_pool.admin_password
+  count                 = var.resource_settings.session_host.count
+  name                  = module.naming.virtual_machine.name_unique
+  resource_group_name   = var.resource_settings.session_pool.resource_group_name
+  location              = lookup(local.azure_locations, var.global_settings.primary_location, "ndl")
+  size                  = var.resource_settings.session_pool.vm_size
+  admin_username        = var.resource_settings.session_pool.admin_username
+  admin_password        = var.resource_settings.session_pool.admin_password
   network_interface_ids = [azurerm_network_interface.this[count.index].id]
 
   os_disk {

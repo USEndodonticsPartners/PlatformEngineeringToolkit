@@ -1,7 +1,7 @@
 resource "azurerm_virtual_machine_extension" "avd_registration_script" {
   count                = var.resource_settings.session_host.count
   name                 = "RegisterAVDSessionHost"
-  virtual_machine_id   = azurerm_windows_virtual_machine.this[count.index].id  # Attach to first VM
+  virtual_machine_id   = azurerm_windows_virtual_machine.this[count.index].id # Attach to first VM
   publisher            = "Microsoft.Compute"
   type                 = "CustomScriptExtension"
   type_handler_version = "1.10"

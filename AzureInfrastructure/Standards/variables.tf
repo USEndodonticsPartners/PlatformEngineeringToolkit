@@ -26,16 +26,16 @@
 
 variable "global_settings" {
   type = object({
-    environment         = string
-    primary_location    = string
-    secondary_location  = optional(string, "none")
-    tags = map(string)
+    environment        = string
+    primary_location   = string
+    secondary_location = optional(string, "none")
+    tags               = map(string)
   })
   default = {
-    environment         = ""
-    primary_location    = ""
-    secondary_location  = ""
-    tags = {}
+    environment        = ""
+    primary_location   = ""
+    secondary_location = ""
+    tags               = {}
   }
 }
 
