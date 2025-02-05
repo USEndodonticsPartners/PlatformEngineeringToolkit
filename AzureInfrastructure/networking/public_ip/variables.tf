@@ -21,7 +21,6 @@ variable "resource_settings" {
     }), {})
     edge_zone = optional(string)
     ip_tags   = optional(map(string), {})
-    tags      = optional(map(string), {})
-    metadata  = any
+    tags      = map(any)
   })
 }
