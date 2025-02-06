@@ -1,5 +1,5 @@
 resource "azurerm_key_vault_secret" "this" {
-  for_each     = var.resource_settings.secrets
+  for_each = var.resource_settings.secrets
 
   name         = "${module.naming.key_vault_secret}-${each.value.name}"
   value        = random_string.this.result
