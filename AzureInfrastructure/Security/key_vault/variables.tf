@@ -4,15 +4,15 @@ variable "global_settings" {
 
 variable "resource_settings" {
   type = object({
+    tenant_id                     = string
     name                          = string
     resource_group_name           = string
     enabled_for_disk_encryption   = optional(bool, false)
-    tenant_id                     = string
     purge_protection_enabled      = optional(bool, false)
     soft_delete_retention_days    = optional(number, 30)
     rbac_authorization_enabled    = optional(bool, false)
     public_network_access_enabled = optional(bool, true)
-    sku                           = string
+    sku                           = optional(string, "Standard")
     deployment_enabled            = optional(bool, true)
     template_deployment_enabled   = optional(bool, true)
     network_acls = optional(map(object({
@@ -58,6 +58,6 @@ variable "resource_settings" {
       contents = string
       password = string
     })), {})
-    metadata = any
+    tags = any
   })
 }
