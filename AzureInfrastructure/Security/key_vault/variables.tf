@@ -12,7 +12,7 @@ variable "resource_settings" {
     soft_delete_retention_days    = optional(number, 30)
     rbac_authorization_enabled    = optional(bool, false)
     public_network_access_enabled = optional(bool, true)
-    sku                           = optional(string, "Standard")
+    sku                           = optional(string, "standard")
     deployment_enabled            = optional(bool, true)
     template_deployment_enabled   = optional(bool, true)
     network_acls = optional(map(object({
