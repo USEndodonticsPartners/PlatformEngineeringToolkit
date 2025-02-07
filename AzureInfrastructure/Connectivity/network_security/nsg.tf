@@ -20,6 +20,10 @@ resource "azurerm_network_security_group" "this" {
   }
 
   tags = local.tags
+
+  lifecycle {
+      prevent_destroy = true
+    }
 }
 
 resource "azurerm_subnet_network_security_group_association" "this" {
