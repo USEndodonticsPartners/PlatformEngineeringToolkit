@@ -70,7 +70,7 @@ resource "azurerm_virtual_network" "this" {
   lifecycle {
       prevent_destroy = true
       ignore_changes = [
-        subnets
+        subnet
       ]
     }
 
