@@ -6,8 +6,8 @@ variable "resource_settings" {
   type = object({
     name                  = string
     resource_group_name   = string
-    tier                  = string
-    replication_type      = string
+    tier                  = optional(string, "Standard")
+    replication_type      = optional(string, "GRS")
     kind                  = optional(string, "StorageV2")
     access_tier           = optional(string, "Hot")
     https_only_enabled    = optional(bool, false)
