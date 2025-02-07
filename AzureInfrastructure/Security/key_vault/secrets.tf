@@ -2,6 +2,6 @@
 #   for_each = var.resource_settings.secrets
 
 #   name         = "${module.naming.key_vault_secret}-${each.value.name}"
-#   value        = random_string.this.result
+#   value        = local.secret
 #   key_vault_id = azurerm_key_vault.this.id
 # }
