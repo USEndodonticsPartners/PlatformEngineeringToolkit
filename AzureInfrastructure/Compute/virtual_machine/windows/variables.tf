@@ -7,7 +7,7 @@ variable "resource_settings" {
     size                         = string
     admin_username               = string
     admin_password               = string
-    source_image_id              = string
+    source_image_id              = optional(string)
     timezone                     = string
     availability_set_enabled   = bool
     os_disk = object({
