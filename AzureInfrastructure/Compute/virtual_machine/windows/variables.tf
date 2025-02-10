@@ -29,8 +29,10 @@ variable "resource_settings" {
       version   = string
     })
     data_disks = optional(map(object({
-      id = string
-      lun = string
+      storage_account_type = string
+      create_option = optional(string, "Empty")
+      disk_size_gb = number
+      lun     = number
       caching = optional(string, "ReadWrite")
     })), {})
     extension = optional(map(object({
