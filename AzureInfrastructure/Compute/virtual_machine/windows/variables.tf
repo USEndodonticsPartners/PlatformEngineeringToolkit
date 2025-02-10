@@ -18,12 +18,12 @@ variable "resource_settings" {
     #   identity_type = string
     #   identity_ids  = optional(list(string))
     # }))
-    source_image_ref = optional(object({
+    source_image_ref = object({
       publisher = string
       offer     = string
       sku       = string
       version   = string
-    }), {})
+    })
     data_disks = optional(map(object({
       id = string
       lun = string
