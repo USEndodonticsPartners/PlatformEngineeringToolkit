@@ -4,9 +4,9 @@ resource "azurerm_managed_disk" "this" {
   name                 = "${module.naming.managed_disk.name}-${each.value.name}"
   location             = lookup(local.azure_locations, var.global_settings.primary_location, "ndl")
   resource_group_name  = var.resource_settings.resource_group_name
-  storage_account_type = each.value.account_type
+  storage_account_type = each.value.storage_account_type
   create_option        = each.value.create_option
-  disk_size_gb         = each.value.disk_size
+  disk_size_gb         = each.value.disk_size_gb
 
   tags = local.tags
 }
