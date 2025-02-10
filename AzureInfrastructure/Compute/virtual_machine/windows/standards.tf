@@ -1,6 +1,6 @@
 module "naming" {
   source = "Azure/naming/azurerm"
-  prefix = [local.env_prefix, local.loc_prefix]
+  prefix = [local.env_prefix, local.loc_prefix, var.resource_settings.name]
 }
 
 module "tagging" {

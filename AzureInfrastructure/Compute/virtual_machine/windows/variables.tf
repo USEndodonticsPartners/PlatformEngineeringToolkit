@@ -2,6 +2,7 @@ variable "global_settings" {}
 
 variable "resource_settings" {
   type = object({
+    name      = string
     resource_group_name          = string
     network_interface_ids        = list(string)
     size                         = string
