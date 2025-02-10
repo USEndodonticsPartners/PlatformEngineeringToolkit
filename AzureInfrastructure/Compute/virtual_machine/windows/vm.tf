@@ -13,14 +13,10 @@ resource "azurerm_windows_virtual_machine" "this" {
     caching                   = var.resource_settings.os_disk.caching
   }
 
-  dynamic "source_image_reference" {
-    for_each = var.resource_settings.source_image_ref
-
-    content {
-      publisher = each.value["publisher"]
-      offer     = each.value["offer"]
-      sku       = each.value["sku"]
-      version   = each.value["version"]
-    }
+  source_image_reference {
+      publisher = var.source_image_ref.publisher
+      offer     = var.source_image_ref.offer
+      sku       = var.source_image_ref.sku
+      version   = var.source_image_ref.version
   }
 }
