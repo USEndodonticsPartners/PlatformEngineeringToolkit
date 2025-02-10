@@ -1,5 +1,5 @@
 resource "azurerm_managed_disk" "this" {
-  for_each = var.resource_settings.data_disk
+  for_each = var.resource_settings.data_disks
 
   name                 = "${module.naming.managed_disk.name}-${each.value.name}"
   location             = lookup(local.azure_locations, var.global_settings.primary_location, "ndl")
@@ -12,7 +12,7 @@ resource "azurerm_managed_disk" "this" {
 }
 
 resource "azurerm_virtual_machine_data_disk_attachment" "this" {
-  for_each = var.resource_settings.data_disk
+  for_each = var.resource_settings.data_disks
 
   managed_disk_id    = azurerm_managed_disk.this[each.key].id
   virtual_machine_id = azurerm_windows_virtual_machine.this.id
