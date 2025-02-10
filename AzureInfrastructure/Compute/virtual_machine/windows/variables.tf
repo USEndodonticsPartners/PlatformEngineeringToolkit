@@ -8,18 +8,8 @@ variable "resource_settings" {
     admin_username               = string
     admin_password               = string
     source_image_id              = string
-    provision_vm_agent           = bool
-    extension_operations_enabled = bool
-    dedicated_host_id            = string
-    automatic_updates_enabled    = bool
-    license_type                 = string
-    availability_set_id          = string
-    encryption_at_host_enabled   = bool
-    proximity_placement_group_id = string
-    patch_mode                   = string
-    patch_assessment_mode        = string
-    zone                         = string
     timezone                     = string
+    availability_set = bool
     os_disk = object({
       name                        = string
       storage_account_type        = string
@@ -28,12 +18,6 @@ variable "resource_settings" {
       size_gb                     = number
       write_accelerator_enabled   = bool
     })
-    boot_diag = optional(object({
-      blob_endpoint = string
-    }))
-    additional_capabilities = optional(object({
-      ultra_ssd_enabled = bool
-    }))
     identity = optional(object({
       identity_type = string
       identity_ids  = optional(list(string))
