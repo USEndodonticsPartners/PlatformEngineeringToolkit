@@ -23,12 +23,12 @@ variable "resource_settings" {
       offer     = string
       sku       = string
       version   = string
-    }))
+    }), {})
     data_disks = optional(map(object({
       id = string
       lun = string
       caching = optional(string, "ReadWrite")
-    })))
+    })), {})
     extension = optional(map(object({
       name = string
       publisher = string
@@ -38,7 +38,7 @@ variable "resource_settings" {
       automatic_upgrade_enabled = string
       settings = string
       protected_settings = string
-    })))
+    })), {})
     tags = any
   })
 }
