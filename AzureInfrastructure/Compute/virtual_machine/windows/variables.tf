@@ -10,7 +10,6 @@ variable "resource_settings" {
     source_image_id              = optional(string)
     timezone                     = string
     availability_set             = object({
-      enabled = bool
       update_domain_count = optional(number, 5)
       fault_domain_count = optional(number, 3)
     })
