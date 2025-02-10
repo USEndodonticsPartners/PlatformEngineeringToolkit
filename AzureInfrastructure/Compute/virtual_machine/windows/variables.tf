@@ -9,19 +9,15 @@ variable "resource_settings" {
     admin_password               = string
     source_image_id              = string
     timezone                     = string
-    availability_set = bool
+    availability_set_enabled   = bool
     os_disk = object({
-      name                        = string
       storage_account_type        = string
       caching                     = string
-      disk_encryption_set_enabled = bool
-      size_gb                     = number
-      write_accelerator_enabled   = bool
     })
-    identity = optional(object({
-      identity_type = string
-      identity_ids  = optional(list(string))
-    }))
+    # identity = optional(object({
+    #   identity_type = string
+    #   identity_ids  = optional(list(string))
+    # }))
     source_image_ref = optional(object({
       publisher = string
       offer     = string
