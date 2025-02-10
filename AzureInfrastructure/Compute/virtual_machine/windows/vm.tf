@@ -17,10 +17,10 @@ resource "azurerm_windows_virtual_machine" "this" {
     for_each = var.resource_settings.source_image_ref
 
     content {
-      publisher = each.value.publisher
-      offer     = each.value.offer
-      sku       = each.value.sku
-      version   = each.value.version
+      publisher = each.value["publisher"]
+      offer     = each.value["offer"]
+      sku       = each.value["sku"]
+      version   = each.value["version"]
     }
   }
 }
