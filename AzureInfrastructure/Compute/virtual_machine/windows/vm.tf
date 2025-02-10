@@ -6,7 +6,6 @@ resource "azurerm_windows_virtual_machine" "this" {
   admin_username        = var.resource_settings.admin_username
   admin_password        = var.resource_settings.admin_password
   network_interface_ids = var.resource_settings.network_interface_ids
-  availability_set_id   = ""
   tags                  = local.tags
 
   os_disk {
