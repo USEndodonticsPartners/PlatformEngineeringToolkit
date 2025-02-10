@@ -9,7 +9,11 @@ variable "resource_settings" {
     admin_password               = string
     source_image_id              = optional(string)
     timezone                     = string
-    availability_set_enabled     = bool
+    availability_set             = object({
+      enabled = bool
+      update_domain_count = optional(number, 5)
+      fault_domain_count = optional(number, 3)
+    })
     os_disk = object({
       storage_account_type        = string
       caching                     = string
