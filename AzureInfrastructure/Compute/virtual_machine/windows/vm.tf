@@ -7,15 +7,11 @@ resource "azurerm_windows_virtual_machine" "this" {
   admin_password        = ""
   network_interface_ids = var.resource_settings.network_interface_ids
   availability_set_id   = ""
-  tags                  = locals.tags
+  tags                  = local.tags
 
   os_disk {
-    name                      = var.resource_settings.os_disk.name
     storage_account_type      = var.resource_settings.os_disk.storage_account_type
     caching                   = var.resource_settings.os_disk.caching
-    disk_encryption_set_id    = var.resource_settings.os_disk.disk_encryption_set_enabled
-    disk_size_gb              = var.resource_settings.os_disk.size_gb
-    write_accelerator_enabled = var.resource_settings.os_disk.write_accelerator_enabled
   }
 
   dynamic "source_image_reference" {
