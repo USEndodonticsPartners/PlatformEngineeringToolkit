@@ -14,9 +14,9 @@ resource "azurerm_windows_virtual_machine" "this" {
   }
 
   source_image_reference {
-      publisher = var.source_image_ref.publisher
-      offer     = var.source_image_ref.offer
-      sku       = var.source_image_ref.sku
-      version   = var.source_image_ref.version
+      publisher = var.resource_settings.source_image_ref.publisher
+      offer     = var.resource_settings.source_image_ref.offer
+      sku       = var.resource_settings.source_image_ref.sku
+      version   = var.resource_settings.source_image_ref.version
   }
 }
