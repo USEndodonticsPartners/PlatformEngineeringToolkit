@@ -41,10 +41,12 @@ variable "resource_settings" {
       publisher = string
       type = string
       type_handler_version = string
-      auto_upgrade_minor_version = bool
-      automatic_upgrade_enabled = optional(bool, true)
-      settings = optional(string)
-      protected_settings = optional(string)
+      data = object({
+        auto_upgrade_minor_version = bool
+        automatic_upgrade_enabled = optional(bool, true)
+        settings = optional(string)
+        protected_settings = optional(string)
+      })
     })), {})
     tags = any
   })
