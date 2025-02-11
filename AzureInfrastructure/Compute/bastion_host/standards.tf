@@ -4,6 +4,6 @@ module "naming" {
 }
 
 module "tagging" {
-  source          = "../../../Standards"
+  source          = "../../Standards"
   global_settings = var.global_settings
 }
