@@ -22,6 +22,7 @@ No requirements.
 
 | Name | Type |
 |------|------|
+| [azurerm_subnet.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet) | resource |
 | [azurerm_virtual_network.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network) | resource |
 
 ## Inputs
@@ -29,7 +30,7 @@ No requirements.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_global_settings"></a> [global\_settings](#input\_global\_settings) | n/a | `any` | n/a | yes |
-| <a name="input_resource_settings"></a> [resource\_settings](#input\_resource\_settings) | n/a | <pre>object({<br/>    name                = string<br/>    resource_group_name = string<br/>    address_space       = list(string)<br/>    dns_servers         = optional(list(string), [])<br/>    subnets = list(object({<br/>      name                        = string<br/>      address_prefixes            = list(string)<br/>      security_group_id           = optional(string, "")<br/>      default_outbound_access     = optional(bool, true)<br/>      private_endpoint_policy     = optional(string, "Disabled")<br/>      service_endpoints           = optional(list(string), [])<br/>      service_endpoint_policy_ids = optional(list(string), [])<br/>      delegation = optional(list(object({<br/>        name = string<br/>        service_delegation = list(object({<br/>          name    = string<br/>          actions = list(string)<br/>        }))<br/>      })), [])<br/>    }))<br/>    encryption = optional(object({<br/>      enforcement = string<br/>      }), {<br/>      enforcement = "AllowUnencrypted"<br/>    })<br/>    ddos = optional(object({<br/>      id = string<br/>    }))<br/>    tags = any<br/>  })</pre> | n/a | yes |
+| <a name="input_resource_settings"></a> [resource\_settings](#input\_resource\_settings) | n/a | <pre>object({<br/>    name                = string<br/>    resource_group_name = string<br/>    address_space       = list(string)<br/>    dns_servers         = optional(list(string), [])<br/>    subnets = optional(map(object({<br/>      name                        = string<br/>      address_prefixes            = list(string)<br/>      security_group_id           = optional(string, "")<br/>      default_outbound_access     = optional(bool, true)<br/>      private_endpoint_policy     = optional(string, "Disabled")<br/>      service_endpoints           = optional(list(string), [])<br/>      service_endpoint_policy_ids = optional(list(string), [])<br/>      delegation = optional(list(object({<br/>        name = string<br/>        service_delegation = list(object({<br/>          name    = string<br/>          actions = list(string)<br/>        }))<br/>      })), [])<br/>    })), {})<br/>    encryption = optional(object({<br/>      enforcement = string<br/>      }), {<br/>      enforcement = "AllowUnencrypted"<br/>    })<br/>    ddos = optional(object({<br/>      id = string<br/>    }))<br/>    tags = any<br/>  })</pre> | n/a | yes |
 
 ## Outputs
 

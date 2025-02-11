@@ -16,24 +16,24 @@ resource "azurerm_key_vault" "this" {
   tags                            = local.tags
 
   access_policy {
-      tenant_id = data.azurerm_client_config.current.tenant_id
-      object_id = data.azurerm_client_config.current.object_id
+    tenant_id = data.azurerm_client_config.current.tenant_id
+    object_id = data.azurerm_client_config.current.object_id
 
-      key_permissions = [
-        "Get",
-      ]
+    key_permissions = [
+      "Get",
+    ]
 
-      secret_permissions = [
-        "Get",
-        "List",
-        "Set",
-        "Recover"
-      ]
+    secret_permissions = [
+      "Get",
+      "List",
+      "Set",
+      "Recover"
+    ]
 
-      storage_permissions = [
-        "Get",
-      ]
-    }
+    storage_permissions = [
+      "Get",
+    ]
+  }
 
   dynamic "network_acls" {
     for_each = var.resource_settings.network_acls
