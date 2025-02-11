@@ -6,8 +6,8 @@ variable "resource_settings" {
     resource_group_name   = string
     network_interface_ids = list(string)
     size                  = string
+    key_vault_id          = string
     admin_username        = string
-    admin_password        = string
     source_image_id       = optional(string)
     timezone              = string
     availability_set = object({

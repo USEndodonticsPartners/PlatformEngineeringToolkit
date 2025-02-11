@@ -28,9 +28,10 @@ variable "resource_settings" {
     }))
     access_policies = optional(map(object({
       object_id               = string
-      key_permissions         = list(string)
-      secret_permissions      = list(string)
-      certificate_permissions = list(string)
+      tenant_id               = string
+      key_permissions         = optional(list(string), [])
+      secret_permissions      = optional(list(string), [])
+      certificate_permissions = optional(list(string), [])
     })), {})
     keys = optional(map(object({
       name        = string
@@ -45,13 +46,6 @@ variable "resource_settings" {
         expire_after         = string
         notify_before_expiry = string
       }))
-    })), {})
-    secrets = optional(map(object({
-      name = string
-      secret_config = object({
-        length  = number
-        special = string
-      })
     })), {})
     certificate = optional(map(object({
       name     = string

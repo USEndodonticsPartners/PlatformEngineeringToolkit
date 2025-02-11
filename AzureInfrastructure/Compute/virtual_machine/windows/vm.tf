@@ -4,7 +4,7 @@ resource "azurerm_windows_virtual_machine" "this" {
   location              = lookup(local.azure_locations, var.global_settings.primary_location, "ndl")
   size                  = var.resource_settings.size
   admin_username        = var.resource_settings.admin_username
-  admin_password        = var.resource_settings.admin_password
+  admin_password        = random_password.this.result
   network_interface_ids = var.resource_settings.network_interface_ids
   availability_set_id   = azurerm_availability_set.this.id
   tags                  = local.tags
