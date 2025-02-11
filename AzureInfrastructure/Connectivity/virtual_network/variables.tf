@@ -8,7 +8,7 @@ variable "resource_settings" {
     resource_group_name = string
     address_space       = list(string)
     dns_servers         = optional(list(string), [])
-    subnets = list(object({
+    subnets = optional(map(object({
       name                        = string
       address_prefixes            = list(string)
       security_group_id           = optional(string, "")
@@ -23,7 +23,7 @@ variable "resource_settings" {
           actions = list(string)
         }))
       })), [])
-    }))
+    })), {})
     encryption = optional(object({
       enforcement = string
       }), {

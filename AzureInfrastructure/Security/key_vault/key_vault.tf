@@ -1,3 +1,5 @@
+data "azurerm_client_config" "current" {}
+
 resource "azurerm_key_vault" "this" {
   name                            = module.naming.key_vault.name
   location                        = lookup(local.azure_locations, var.global_settings.primary_location, "ndl")
@@ -12,6 +14,26 @@ resource "azurerm_key_vault" "this" {
   enabled_for_deployment          = var.resource_settings.deployment_enabled
   enabled_for_template_deployment = var.resource_settings.template_deployment_enabled
   tags                            = local.tags
+
+  access_policy {
+      tenant_id = data.azurerm_client_config.current.tenant_id
+      object_id = data.azurerm_client_config.current.object_id
+
+      key_permissions = [
+        "Get",
+      ]
+
+      secret_permissions = [
+        "Get",
+        "List",
+        "Set",
+        "Recover"
+      ]
+
+      storage_permissions = [
+        "Get",
+      ]
+    }
 
   dynamic "network_acls" {
     for_each = var.resource_settings.network_acls
