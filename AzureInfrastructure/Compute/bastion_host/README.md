@@ -16,7 +16,7 @@ No requirements.
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_naming"></a> [naming](#module\_naming) | Azure/naming/azurerm | n/a |
-| <a name="module_tagging"></a> [tagging](#module\_tagging) | ../../../Standards | n/a |
+| <a name="module_tagging"></a> [tagging](#module\_tagging) | ../../Standards | n/a |
 
 ## Resources
 
@@ -29,7 +29,7 @@ No requirements.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_global_settings"></a> [global\_settings](#input\_global\_settings) | n/a | `any` | n/a | yes |
-| <a name="input_resource_settings"></a> [resource\_settings](#input\_resource\_settings) | n/a | <pre>object({<br/>    resource_group_name = string<br/>    sku                 = string<br/>    configfurations = object({<br/>      ip_connect_enabled     = optional(bool, null)<br/>      copy_paste_enabled     = optional(bool, null)<br/>      scale_units            = optional(number, 2)<br/>      shareable_link_enabled = optional(string, null)<br/>      file_copy_enabled      = optional(bool, null)<br/>      tunneling_enabled      = optional(bool, null)<br/>    })<br/>    ip_configurations = object({<br/>      name      = string<br/>      subnet_id = string<br/>      pip_id    = string<br/>    })<br/>    tags = any<br/>  })</pre> | n/a | yes |
+| <a name="input_resource_settings"></a> [resource\_settings](#input\_resource\_settings) | n/a | <pre>object({<br/>    name                = string<br/>    resource_group_name = string<br/>    sku                 = optional(string, "Basic")<br/>    configfurations = object({<br/>      ip_connect_enabled     = optional(bool, false)<br/>      copy_paste_enabled     = optional(bool, true)<br/>      scale_units            = optional(number, 2)<br/>      shareable_link_enabled = optional(string, null)<br/>      file_copy_enabled      = optional(bool, null)<br/>      tunneling_enabled      = optional(bool, null)<br/>    })<br/>    ip_configuration = object({<br/>      name      = string<br/>      subnet_id = string<br/>      pip_id    = string<br/>    })<br/>    tags = any<br/>  })</pre> | n/a | yes |
 
 ## Outputs
 
