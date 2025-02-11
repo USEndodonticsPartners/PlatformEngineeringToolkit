@@ -14,8 +14,8 @@ resource "azurerm_bastion_host" "this" {
   tags = local.tags
 
   ip_configuration {
-    name                 = var.resource_settings.ip_configurtions.name
-    subnet_id            = var.resource_settings.ip_configurtions.subnet_id
-    public_ip_address_id = var.resource_settings.ip_configurtions.pip_id
+    name                 = var.resource_settings.ip_configurtion.name
+    subnet_id            = var.resource_settings.ip_configurtion.subnet_id
+    public_ip_address_id = var.resource_settings.ip_configurtion.pip_id
   }
 }

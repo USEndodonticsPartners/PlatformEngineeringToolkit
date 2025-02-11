@@ -5,7 +5,7 @@ variable "resource_settings" {
     name                = string
     resource_group_name = string
     sku                 = optional(string, "Basic")
-    configfurations = object({
+    configurations = object({
       ip_connect_enabled     = optional(bool, false)
       copy_paste_enabled     = optional(bool, true)
       scale_units            = optional(number, 2)
