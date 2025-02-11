@@ -5,8 +5,8 @@ variable "resource_settings" {
     resource_group_name = string
     sku                 = string
     configfurations = object({
-      ip_connect_enabled     = optional(bool, null)
-      copy_paste_enabled     = optional(bool, null)
+      ip_connect_enabled     = optional(bool, false)
+      copy_paste_enabled     = optional(bool, true)
       scale_units            = optional(number, 2)
       shareable_link_enabled = optional(string, null)
       file_copy_enabled      = optional(bool, null)
