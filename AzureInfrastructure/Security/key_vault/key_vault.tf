@@ -27,8 +27,7 @@ resource "azurerm_key_vault" "this" {
       "Get",
       "List",
       "Set",
-      "Recover",
-      "Delete"
+      "Recover"
     ]
 
     storage_permissions = [
