@@ -21,7 +21,7 @@ resource "azurerm_windows_virtual_machine" "this" {
   admin_username        = var.resource_settings.session_pool.admin_username
   admin_password        = random_password.this.result
   network_interface_ids = [azurerm_network_interface.this[count.index].id]
-  computer_name         = "${var.resource_settings.session_pool.computer_name}${count.index}}"
+  computer_name         = "${var.resource_settings.session_pool.computer_name}-${count.index}"
 
   os_disk {
     caching              = var.resource_settings.session_pool.os_disk.caching
