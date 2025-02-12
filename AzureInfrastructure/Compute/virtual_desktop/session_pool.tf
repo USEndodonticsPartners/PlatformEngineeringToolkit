@@ -1,6 +1,7 @@
 resource "azurerm_network_interface" "this" {
-  count               = var.resource_settings.session_pool.count
-  name                = module.naming.network_interface.name_unique
+  count = var.resource_settings.session_pool.count
+
+  name                = "${module.naming.network_interface.name_unique}-${count.index}"
   location            = lookup(local.azure_locations, var.global_settings.primary_location, "ndl")
   resource_group_name = var.resource_settings.session_pool.resource_group_name
 
@@ -34,4 +35,9 @@ resource "azurerm_windows_virtual_machine" "this" {
     sku       = var.resource_settings.session_pool.source_image_ref.sku
     version   = var.resource_settings.session_pool.source_image_ref.version
   }
+
+  depends_on = [
+    azurerm_virtual_desktop_host_pool.this,
+    azurerm_network_interface.this
+  ]
 }
