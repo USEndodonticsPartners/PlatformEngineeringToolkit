@@ -12,8 +12,7 @@ resource "azurerm_virtual_machine_extension" "avd_registration_script" {
         "modulesUrl": "https://shrdusetfcsstor.blob.core.windows.net/avd-configuration/Configuration.zip",
         "configurationFunction": "Configuration.ps1\\AddSessionHost",
         "properties": {
-          "hostPoolName": "${azurerm_virtual_desktop_host_pool.this.name}",
-          "aadJoin": true
+          "hostPoolName": "${azurerm_virtual_desktop_host_pool.this.name}"
         }
       }
       SETTINGS
