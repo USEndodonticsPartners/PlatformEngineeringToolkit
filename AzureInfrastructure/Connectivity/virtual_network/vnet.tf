@@ -36,8 +36,8 @@ resource "azurerm_virtual_network" "this" {
     module.tagging
   ]
 
-  lifecycle {
-    prevent_destroy = true
-  }
+  # lifecycle {
+  #   prevent_destroy = true
+  # }
 
 }
