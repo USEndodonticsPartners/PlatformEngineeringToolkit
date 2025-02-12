@@ -11,6 +11,7 @@ No requirements.
 |------|---------|
 | <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | n/a |
 | <a name="provider_random"></a> [random](#provider\_random) | n/a |
+| <a name="provider_time"></a> [time](#provider\_time) | n/a |
 
 ## Modules
 
@@ -28,15 +29,17 @@ No requirements.
 | [azurerm_virtual_desktop_host_pool.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_desktop_host_pool) | resource |
 | [azurerm_virtual_desktop_host_pool_registration_info.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_desktop_host_pool_registration_info) | resource |
 | [azurerm_virtual_desktop_workspace.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_desktop_workspace) | resource |
+| [azurerm_virtual_machine_extension.avd_registration_script](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine_extension) | resource |
 | [azurerm_windows_virtual_machine.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/windows_virtual_machine) | resource |
 | [random_password.this](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
+| [time_rotating.this](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/rotating) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_global_settings"></a> [global\_settings](#input\_global\_settings) | n/a | `any` | n/a | yes |
-| <a name="input_resource_settings"></a> [resource\_settings](#input\_resource\_settings) | n/a | <pre>object({<br/>    name                = string<br/>    resource_group_name = string<br/>    friendly_name       = string<br/>    type                = string<br/>    load_balancer_type  = string<br/>    description         = optional(string)<br/>    session_pool = object({<br/>      name                = string<br/>      count               = number<br/>      resource_group_name = string<br/>      key_vault_id        = string<br/>      ip_configuration = object({<br/>        name       = string<br/>        subnet_id  = string<br/>        allocation = string<br/>      })<br/>      vm_size        = string<br/>      admin_username = string<br/>      os_disk = object({<br/>        caching      = string<br/>        storage_type = string<br/>      })<br/>      source_image_ref = object({<br/>        publisher = string<br/>        offer     = string<br/>        sku       = string<br/>        version   = string<br/>      })<br/>    })<br/>    tags = any<br/>  })</pre> | n/a | yes |
+| <a name="input_resource_settings"></a> [resource\_settings](#input\_resource\_settings) | n/a | <pre>object({<br/>    name                = string<br/>    resource_group_name = string<br/>    friendly_name       = string<br/>    type                = string<br/>    load_balancer_type  = string<br/>    description         = optional(string)<br/>    session_pool = object({<br/>      name                = string<br/>      count               = number<br/>      resource_group_name = string<br/>      key_vault_id        = string<br/>      ip_configuration = object({<br/>        name       = string<br/>        subnet_id  = string<br/>        allocation = optional(string, "Dynamic")<br/>      })<br/>      vm_size        = string<br/>      admin_username = string<br/>      os_disk = object({<br/>        caching      = string<br/>        storage_type = string<br/>      })<br/>      source_image_ref = object({<br/>        publisher = string<br/>        offer     = string<br/>        sku       = string<br/>        version   = string<br/>      })<br/>    })<br/>    tags = any<br/>  })</pre> | n/a | yes |
 
 ## Outputs
 
