@@ -1,7 +1,7 @@
-resource "azurerm_virtual_machine_extension" "avd_registration_script" {
+resource "azurerm_virtual_machine_extension" "this" {
   count = var.resource_settings.session_pool.count
 
-  name                 = "register-session-host-vmext"
+  name                 = module.naming.virtual_machine_extension.name
   virtual_machine_id   = azurerm_windows_virtual_machine.this[count.index].id
   publisher            = "Microsoft.Powershell"
   type                 = "DSC"
@@ -9,7 +9,7 @@ resource "azurerm_virtual_machine_extension" "avd_registration_script" {
 
   settings = <<-SETTINGS
       {
-        "modulesUrl": https://wvdportalstorageblob.blob.core.windows.net/galleryartifacts/Configuration_01-19-2023.zip,
+        "modulesUrl": "https://wvdportalstorageblob.blob.core.windows.net/galleryartifacts/Configuration_01-19-2023.zip",
         "configurationFunction": "Configuration.ps1\\AddSessionHost",
         "properties": {
           "hostPoolName": "${azurerm_virtual_desktop_host_pool.this.name}",
