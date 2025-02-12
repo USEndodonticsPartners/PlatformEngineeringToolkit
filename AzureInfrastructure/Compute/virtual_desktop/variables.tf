@@ -10,5 +10,6 @@ variable "resource_settings" {
     type                = string
     load_balancer_type  = string
     description         = optional(string)
+    tags                = any
   })
 }

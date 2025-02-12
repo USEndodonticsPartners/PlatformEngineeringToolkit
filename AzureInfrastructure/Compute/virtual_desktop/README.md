@@ -31,7 +31,7 @@ No requirements.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_global_settings"></a> [global\_settings](#input\_global\_settings) | n/a | `any` | n/a | yes |
-| <a name="input_resource_settings"></a> [resource\_settings](#input\_resource\_settings) | n/a | <pre>object({<br/>    name                = string<br/>    resource_group_name = string<br/>    friendly_name       = string<br/>    type                = string<br/>    load_balancer_type  = string<br/>    description         = optional(string)<br/>  })</pre> | n/a | yes |
+| <a name="input_resource_settings"></a> [resource\_settings](#input\_resource\_settings) | n/a | <pre>object({<br/>    name                = string<br/>    resource_group_name = string<br/>    friendly_name       = string<br/>    type                = string<br/>    load_balancer_type  = string<br/>    description         = optional(string)<br/>    tags                = any<br/>  })</pre> | n/a | yes |
 
 ## Outputs
 
