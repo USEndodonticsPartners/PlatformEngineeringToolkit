@@ -23,10 +23,15 @@ resource "azurerm_windows_virtual_machine" "this" {
   admin_password        = random_password.this.result
   network_interface_ids = [azurerm_network_interface.this[count.index].id]
   computer_name         = "${var.resource_settings.session_pool.computer_name}-${count.index}"
+  provision_vm_agent    = true
 
   os_disk {
     caching              = var.resource_settings.session_pool.os_disk.caching
     storage_account_type = var.resource_settings.session_pool.os_disk.storage_type
+  }
+
+  boot_diagnostics {
+    storage_account_uri = var.resource_settings.session_pool.storage_account_uri # Passing a null value will utilize a Managed Storage Account to store Boot Diagnostics
   }
 
   source_image_reference {

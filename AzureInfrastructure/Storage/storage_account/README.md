@@ -35,5 +35,7 @@ No requirements.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_storage_account_uri"></a> [storage\_account\_uri](#output\_storage\_account\_uri) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

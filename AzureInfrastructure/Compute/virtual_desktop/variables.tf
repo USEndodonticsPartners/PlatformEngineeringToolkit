@@ -16,6 +16,7 @@ variable "resource_settings" {
       resource_group_name = string
       computer_name       = string
       key_vault_id        = string
+      storage_account_uri = string
       ip_configuration = object({
         name       = string
         subnet_id  = string
