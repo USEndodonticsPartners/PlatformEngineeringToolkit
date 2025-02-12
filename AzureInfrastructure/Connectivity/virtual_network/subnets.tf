@@ -22,4 +22,12 @@ resource "azurerm_subnet" "this" {
       }
     }
   }
+
+  lifecycle {
+    prevent_destroy = true
+  }
+
+  depends_on = [
+    azurerm_virtual_network.this
+  ]
 }
