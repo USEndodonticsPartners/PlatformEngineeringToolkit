@@ -1,35 +1,23 @@
-# resource "azurerm_network_interface" "this" {
-#   count               = var.resource_settings.session_host.count
-#   name                = module.naming.network_interface.name_unique
-#   location            = lookup(local.azure_locations, var.global_settings.primary_location, "ndl")
-#   resource_group_name = var.resource_settings.session_pool.resource_group_name
+resource "time_rotating" "this" {
+  # Must be between 1 hour and 30 days
+  rotation_days = 29
+}
 
-#   ip_configuration {
-#     name                          = var.resource_settings.session_pool.ip_configuration.name
-#     subnet_id                     = var.resource_settings.session_pool.ip_configuration.subnet_id
-#     private_ip_address_allocation = var.resource_settings.session_pool.ip_configuration.allocation
-#   }
-# }
+resource "azurerm_virtual_desktop_host_pool" "this" {
+  name                = module.naming.virtual_desktop_host_pool.name_unique
+  location            = lookup(local.azure_locations, var.global_settings.primary_location, "ndl")
+  resource_group_name = var.resource_settings.resource_group_name
+  type                = var.resource_settings.type
+  load_balancer_type  = var.resource_settings.load_balancer_type
+}
 
-# resource "azurerm_windows_virtual_machine" "this" {
-#   count                 = var.resource_settings.session_host.count
-#   name                  = module.naming.virtual_machine.name_unique
-#   resource_group_name   = var.resource_settings.session_pool.resource_group_name
-#   location              = lookup(local.azure_locations, var.global_settings.primary_location, "ndl")
-#   size                  = var.resource_settings.session_pool.vm_size
-#   admin_username        = var.resource_settings.session_pool.admin_username
-#   admin_password        = var.resource_settings.session_pool.admin_password
-#   network_interface_ids = [azurerm_network_interface.this[count.index].id]
+resource "azurerm_virtual_desktop_host_pool_registration_info" "this" {
+  hostpool_id     = azurerm_virtual_desktop_host_pool.this.id
+  expiration_date = time_rotating.this.rotation_rfc3339
 
-#   os_disk {
-#     caching              = var.resource_settings.session_pool.os_disk.caching
-#     storage_account_type = var.resource_settings.session_pool.os_disk.storage_type
-#   }
-
-#   source_image_reference {
-#     publisher = var.resource_settings.session_pool.image_reference.publisher
-#     offer     = var.resource_settings.session_pool.image_reference.offer
-#     sku       = var.resource_settings.session_pool.image_reference.sku
-#     version   = var.resource_settings.session_pool.image_reference.version
-#   }
-# }
+  depends_on = [
+    azurerm_virtual_desktop_host_pool.this,
+    azurerm_virtual_desktop_workspace.this,
+    time_rotating.this
+  ]
+}
