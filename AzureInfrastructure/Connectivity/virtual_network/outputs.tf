@@ -19,5 +19,5 @@ output "virtual_network_guid" {
 }
 
 output "subnets" {
-  value = azurerm_subnet.this.id
+  value = azurerm_subnet.this[each.key].id
 }
