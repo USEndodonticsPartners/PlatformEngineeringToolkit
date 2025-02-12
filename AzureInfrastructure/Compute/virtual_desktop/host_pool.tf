@@ -8,7 +8,7 @@ resource "azurerm_virtual_desktop_host_pool" "this" {
 
 resource "azurerm_virtual_desktop_host_pool_registration_info" "this" {
   hostpool_id     = azurerm_virtual_desktop_host_pool.this.id
-  expiration_date = "2025-03-28T23:40:52Z"
+  expiration_date = "2025-02-28T04:37:52Z"
 
   depends_on = [
     azurerm_virtual_desktop_host_pool.this,
