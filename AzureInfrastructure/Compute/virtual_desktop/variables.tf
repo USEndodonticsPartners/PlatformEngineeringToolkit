@@ -14,6 +14,7 @@ variable "resource_settings" {
       name                = string
       count               = number
       resource_group_name = string
+      computer_name       = string
       key_vault_id        = string
       ip_configuration = object({
         name       = string
