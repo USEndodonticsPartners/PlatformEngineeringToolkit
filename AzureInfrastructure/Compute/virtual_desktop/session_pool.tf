@@ -19,7 +19,6 @@ resource "azurerm_windows_virtual_machine" "this" {
   resource_group_name   = var.resource_settings.session_pool.resource_group_name
   location              = lookup(local.azure_locations, var.global_settings.primary_location, "ndl")
   size                  = var.resource_settings.session_pool.vm_size
-  zones                 = var.resource_settings.session_pool.zones
   admin_username        = var.resource_settings.session_pool.admin_username
   admin_password        = random_password.this[count.index].result
   network_interface_ids = [azurerm_network_interface.this[count.index].id]
@@ -28,6 +27,9 @@ resource "azurerm_windows_virtual_machine" "this" {
   vtpm_enabled          = var.resource_settings.session_pool.vtpm_enabled
   secure_boot_enabled   = var.resource_settings.session_pool.secure_boot_enabled
   timezone              = var.resource_settings.session_pool.timezone
+
+  for_each              = local.zones
+  zone                  = each.value
 
   os_disk {
     caching              = var.resource_settings.session_pool.os_disk.caching
