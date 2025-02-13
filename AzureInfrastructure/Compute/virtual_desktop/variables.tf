@@ -34,7 +34,7 @@ variable "resource_settings" {
         storage_type = string
         disk_size_gb = number
       })
-      zones = list(string)
+      zone = number
       source_image_ref = object({
         publisher = string
         offer     = string
