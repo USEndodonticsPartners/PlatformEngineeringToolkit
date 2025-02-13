@@ -19,7 +19,7 @@ resource "azurerm_windows_virtual_machine" "this" {
   resource_group_name   = var.resource_settings.session_pool.resource_group_name
   location              = lookup(local.azure_locations, var.global_settings.primary_location, "ndl")
   size                  = var.resource_settings.session_pool.vm_size
-  zone                  = var.resource_settings.session_pool.zones
+  zones                 = var.resource_settings.session_pool.zones
   admin_username        = var.resource_settings.session_pool.admin_username
   admin_password        = random_password.this[count.index].result
   network_interface_ids = [azurerm_network_interface.this[count.index].id]
