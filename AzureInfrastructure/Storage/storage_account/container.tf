@@ -1,5 +1,5 @@
 resource "azurerm_storage_container" "this" {
-  for_each = var.resource_settings.containers
+  for_each = var.resource_settings.kind != "FileStorage" ? var.resource_settings.containers : {}
 
   name                     = "${module.naming.storage_container.name}-${each.key}"
   storage_account_id       = azurerm_storage_account.this.id

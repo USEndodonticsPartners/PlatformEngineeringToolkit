@@ -29,18 +29,10 @@ resource "azurerm_storage_account" "this" {
     }
   }
 
-  # azure_files_authentication {
-  #   directory_type                 = var.resource_settings.azure_files.directory_type
-  #   default_share_level_permission = var.resource_settings.azure_files.default_share_level_permissions
-  #   active_directory {
-  #     domain_sid          = var.resource_settings.azure_files.ad.domain_sid
-  #     domain_guid         = var.resource_settings.azure_files.ad.domain_guid
-  #     domain_name         = var.resource_settings.azure_files.ad.domain_name
-  #     storage_sid         = var.resource_settings.azure_files.ad.storage_sid
-  #     forest_name         = var.resource_settings.azure_files.ad.forest_name
-  #     netbios_domain_name = var.resource_settings.azure_files.ad.netbios_domain_name
-  #   }
-  # }
+  azure_files_authentication {
+    directory_type                 = var.resource_settings.azure_files.directory_type
+    default_share_level_permission = var.resource_settings.azure_files.default_share_level_permissions
+  }
 
   # blob_properties {
   #   versioning_enabled            = var.resource_settings.blob_properties.versioning_enabled
