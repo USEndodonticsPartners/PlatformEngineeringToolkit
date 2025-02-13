@@ -10,17 +10,20 @@ resource "azurerm_virtual_machine_extension" "integrity_monitor_this" {
 
   settings = <<-SETTINGS
   {
-    "AttestationConfig": {
-    "MaaSettings": {
-      "maaEndpoint": "",
-      "maaTenantName": "GuestAttestation"
-      },
-    "AscSettings": {
-      "ascReportingEndpoint": "",
-      "ascReportingFrequency": ""
-      },
-    "useCustomToken": "false",
-    "disableAlerts": "false"
+    "settings": {
+      "AttestationConfig": {
+        "MaaSettings": {
+          "maaEndpoint": "",
+          "maaTenantName": "GuestAttestation"
+        },
+        "AscSettings": {
+          "ascReportingEndpoint": "",
+          "ascReportingFrequency": ""
+        },
+        "useCustomToken": "false",
+        "disableAlerts": "false"
+      }
+    }
   }
   SETTINGS
 

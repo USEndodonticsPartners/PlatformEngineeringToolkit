@@ -10,15 +10,15 @@ resource "azurerm_virtual_machine_extension" "pool_register_this" {
   automatic_upgrade_enabled  = true
 
   settings = <<-SETTINGS
-      {
-        "modulesUrl": "https://wvdportalstorageblob.blob.core.windows.net/galleryartifacts/Configuration_01-19-2023.zip",
-        "configurationFunction": "Configuration.ps1\\AddSessionHost",
-        "properties": {
-          "hostPoolName": "${azurerm_virtual_desktop_host_pool.this.name}",
-          "aadjoin": true
-        }
-      }
-      SETTINGS
+  {
+    "modulesUrl": "https://wvdportalstorageblob.blob.core.windows.net/galleryartifacts/Configuration_01-19-2023.zip",
+    "configurationFunction": "Configuration.ps1\\AddSessionHost",
+    "properties": {
+      "hostPoolName": "${azurerm_virtual_desktop_host_pool.this.name}",
+      "aadjoin": true
+    }
+  }
+  SETTINGS
 
   protected_settings = <<-PROTECTED_SETTINGS
       {
