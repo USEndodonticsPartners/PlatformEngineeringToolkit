@@ -26,13 +26,13 @@ resource "azurerm_windows_virtual_machine" "this" {
   computer_name         = "${var.resource_settings.session_pool.computer_name}-${count.index}"
   provision_vm_agent    = true
   vtpm_enabled          = var.resource_settings.session_pool.vtpm_enabled
-  secure_boot_enabled   = var.resource_settings.session_pool.secured_boot_enabled
+  secure_boot_enabled   = var.resource_settings.session_pool.secure_boot_enabled
   timezone              = var.resource_settings.session_pool.timezone
 
   os_disk {
     caching              = var.resource_settings.session_pool.os_disk.caching
     storage_account_type = var.resource_settings.session_pool.os_disk.storage_type
-    disk_size_gb         = var.resource_settings.session_pool.disk_size_gb
+    disk_size_gb         = var.resource_settings.session_pool.os_disk.disk_size_gb
   }
 
   identity {
