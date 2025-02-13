@@ -52,7 +52,7 @@ variable "resource_settings" {
       icon_path        = optional(string)
       icon_index       = optional(string)
       description      = optional(string)
-    })))
+    })), {})
     tags = any
   })
 }
