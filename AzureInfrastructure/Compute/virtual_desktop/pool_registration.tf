@@ -1,4 +1,4 @@
-resource "azurerm_virtual_machine_extension" "this" {
+resource "azurerm_virtual_machine_extension" "pool_register_this" {
   count = var.resource_settings.session_pool.count
 
   name                 = module.naming.virtual_machine_extension.name

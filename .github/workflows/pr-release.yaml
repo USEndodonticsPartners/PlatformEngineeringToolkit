@@ -1,0 +1,91 @@
+name: 🚀 Auto Version Bump & Release
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  versioning:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: read
+
+    steps:
+      - name: 🛠 Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Fetch all tags for versioning
+
+      - name: 📖 Get Latest Tag
+        id: get-latest-tag
+        run: |
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
+          echo "Latest tag is $LATEST_TAG"
+
+      - name: 🔍 Extract Semantic Version
+        id: extract-version
+        run: |
+          TAG=${LATEST_TAG#v}  # Remove "v" prefix
+          MAJOR=$(echo $TAG | cut -d. -f1)
+          MINOR=$(echo $TAG | cut -d. -f2)
+          PATCH=$(echo $TAG | cut -d. -f3)
+
+          echo "MAJOR=$MAJOR" >> $GITHUB_ENV
+          echo "MINOR=$MINOR" >> $GITHUB_ENV
+          echo "PATCH=$PATCH" >> $GITHUB_ENV
+
+      - name: 🔍 Extract PR Title
+        id: get-pr-title
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_TITLE=$(gh pr view ${{ github.event.pull_request.number }} --json title -q ".title")
+          echo "PR_TITLE=$PR_TITLE" >> $GITHUB_ENV
+          echo "PR Title: $PR_TITLE"
+
+      - name: 🔄 Determine Version Bump
+        id: bump-version
+        run: |
+          NEW_MAJOR=$MAJOR
+          NEW_MINOR=$MINOR
+          NEW_PATCH=$PATCH
+
+          if [[ "$PR_TITLE" == epic/* ]]; then
+            NEW_MAJOR=$((MAJOR + 1))
+            NEW_MINOR=0  # Reset minor when major increases
+            NEW_PATCH=0  # Reset patch when major increases
+          elif [[ "$PR_TITLE" == feat/* ]]; then
+            NEW_MINOR=$((MINOR + 1))
+            NEW_PATCH=0  # Reset patch when minor increases
+          elif [[ "$PR_TITLE" == hotfix/* ]]; then
+            NEW_PATCH=$((PATCH + 1))
+          else
+            echo "No version bump for PR title: $PR_TITLE"
+            exit 0
+          fi
+
+          NEW_VERSION="v$NEW_MAJOR.$NEW_MINOR.$NEW_PATCH"
+          echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+          echo "Bumping version to $NEW_VERSION"
+
+      - name: 🏷 Create Git Tag
+        id: create-tag
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git tag -a $NEW_VERSION -m "Release $NEW_VERSION"
+          git push origin $NEW_VERSION
+
+      - name: 🚀 Create GitHub Release
+        id: create-release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ env.NEW_VERSION }}
+          release_name: "Release ${{ env.NEW_VERSION }}"
+          body: "### Changes in this release\n\nAutomated version bump based on PR title."
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -41,7 +41,30 @@ variable "resource_settings" {
         sku       = string
         version   = string
       })
+      extension = optional(map(object({
+        name                 = string
+        publisher            = string
+        type                 = string
+        type_handler_version = string
+        data = object({
+          auto_upgrade_minor_version = bool
+          automatic_upgrade_enabled  = optional(bool, true)
+          settings                   = optional(string)
+          protected_settings         = optional(string)
+        })
+      })), {})
     })
+    applications = optional(map(object({
+      name             = string
+      friendly_name    = string
+      application_path = string
+      cmd_arg_policy   = optional(string)
+      cmd_args         = optional(string)
+      portal_enabled   = optional(bool, true)
+      icon_path        = optional(string)
+      icon_index       = optional(string)
+      description      = optional(string)
+    })))
     tags = any
   })
 }
