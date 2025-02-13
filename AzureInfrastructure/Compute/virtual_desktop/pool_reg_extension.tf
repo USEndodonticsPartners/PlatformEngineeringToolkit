@@ -1,11 +1,13 @@
 resource "azurerm_virtual_machine_extension" "pool_register_this" {
   count = var.resource_settings.session_pool.count
 
-  name                 = "AVDRegistrationExtension"
-  virtual_machine_id   = azurerm_windows_virtual_machine.this[count.index].id
-  publisher            = "Microsoft.Powershell"
-  type                 = "DSC"
-  type_handler_version = "2.73"
+  name                       = "AVDRegistrationExtension"
+  virtual_machine_id         = azurerm_windows_virtual_machine.this[count.index].id
+  publisher                  = "Microsoft.Powershell"
+  type                       = "DSC"
+  type_handler_version       = "2.73"
+  auto_upgrade_minor_version = true
+  automatic_upgrade_enabled  = true
 
   settings = <<-SETTINGS
       {
