@@ -41,7 +41,7 @@ variable "resource_settings" {
         sku       = string
         version   = string
       })
-      extension = optional(object({
+      extension = optional(map(object({
         name                 = string
         publisher            = string
         type                 = string
@@ -52,7 +52,7 @@ variable "resource_settings" {
           settings                   = optional(string)
           protected_settings         = optional(string)
         })
-      }))
+      })), {})
     })
     applications = optional(map(object({
       name             = string
