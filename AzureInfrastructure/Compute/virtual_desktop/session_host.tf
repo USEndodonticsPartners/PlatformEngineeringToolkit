@@ -9,7 +9,7 @@ resource "azurerm_virtual_desktop_host_pool" "this" {
   resource_group_name      = var.resource_settings.resource_group_name
   type                     = var.resource_settings.type
   load_balancer_type       = var.resource_settings.load_balancer_type
-  custom_rdp_properties    = "enablerdsaadauth:i:0"
+  custom_rdp_properties    = "enablerdsaadauth:i:0;"
   maximum_sessions_allowed = var.resource_settings.max_sessions_allowed
   validate_environment     = true
 }
