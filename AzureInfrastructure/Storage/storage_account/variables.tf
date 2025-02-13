@@ -28,10 +28,10 @@ variable "resource_settings" {
     azure_files = optional(object({
       share_name = string
       quota = optional(number, 50)
-      azure_files_authentication = object({
-        directory_type = optional(string, "AADKERB")
-        default_share_level_permissions = optional(string, "None")
-      })
+      azure_files_authentication = optional(object({
+        directory_type = string
+        default_share_level_permissions = string
+      }))
     }))
     blob_properties = optional(object({
       versioning_enabled       = optional(bool)
