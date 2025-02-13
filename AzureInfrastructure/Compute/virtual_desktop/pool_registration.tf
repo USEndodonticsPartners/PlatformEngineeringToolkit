@@ -1,7 +1,7 @@
 resource "azurerm_virtual_machine_extension" "pool_register_this" {
   count = var.resource_settings.session_pool.count
 
-  name                 = module.naming.virtual_machine_extension.name
+  name                 = "AVDRegistrationExtension"
   virtual_machine_id   = azurerm_windows_virtual_machine.this[count.index].id
   publisher            = "Microsoft.Powershell"
   type                 = "DSC"
