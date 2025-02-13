@@ -4,13 +4,14 @@ variable "global_settings" {
 
 variable "resource_settings" {
   type = object({
-    name                = string
-    resource_group_name = string
-    friendly_name       = string
-    type                = string
-    load_balancer_type  = string
-    description         = optional(string)
-    app_group_type      = string
+    name                 = string
+    resource_group_name  = string
+    friendly_name        = string
+    type                 = string
+    load_balancer_type   = string
+    max_sessions_allowed = number
+    description          = optional(string)
+    app_group_type       = string
     session_pool = object({
       name                = string
       count               = number
@@ -18,17 +19,22 @@ variable "resource_settings" {
       computer_name       = string
       key_vault_id        = string
       storage_account_uri = string
+      timezone            = string
       ip_configuration = object({
         name       = string
         subnet_id  = string
         allocation = optional(string, "Dynamic")
       })
-      vm_size        = string
-      admin_username = string
+      vm_size             = string
+      admin_username      = string
+      secure_boot_enabled = bool
+      vtpm_enabled        = bool
       os_disk = object({
         caching      = string
         storage_type = string
+        disk_size_gb = number
       })
+      zones = list(string)
       source_image_ref = object({
         publisher = string
         offer     = string
