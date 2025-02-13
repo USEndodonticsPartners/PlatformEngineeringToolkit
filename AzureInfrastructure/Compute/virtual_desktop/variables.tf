@@ -10,6 +10,7 @@ variable "resource_settings" {
     type                = string
     load_balancer_type  = string
     description         = optional(string)
+    app_group_type      = string
     session_pool = object({
       name                = string
       count               = number
