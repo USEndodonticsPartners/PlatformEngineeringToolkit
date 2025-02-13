@@ -3,5 +3,5 @@ resource "azurerm_role_assignment" "this" {
 
   scope                = azurerm_windows_virtual_machine.this[count.index].id
   role_definition_name = "Virtual Machine User Login"
-  principal_id         = azurerm_windows_virtual_machine.this[count.index].identity.principal_id
+  principal_id         = azurerm_windows_virtual_machine.this[count.index].identity[0].principal_id
 }
