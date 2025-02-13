@@ -1,0 +1,11 @@
+AzureInfrastructure/Compute/virtual_desktop/.terraform.lock.hcl
+AzureInfrastructure/Compute/virtual_desktop/.terraform/providers/registry.terraform.io/hashicorp/azurerm/4.18.0/darwin_arm64/LICENSE.txt
+*.json
+AzureInfrastructure/Compute/virtual_desktop/.terraform/modules/naming/
+AzureInfrastructure/Compute/virtual_desktop/.terraform/providers/registry.terraform.io/hashicorp/azurerm/4.18.0/darwin_arm64/terraform-provider-azurerm_v4.18.0_x5
+AzureInfrastructure/Compute/virtual_desktop/.terraform/providers/registry.terraform.io/hashicorp/random/3.6.3/darwin_arm64/LICENSE.txt
+AzureInfrastructure/Compute/virtual_desktop/.terraform/providers/registry.terraform.io/hashicorp/random/3.6.3/darwin_arm64/terraform-provider-random_v3.6.3_x5
+AzureInfrastructure/Compute/virtual_desktop/.terraform/providers/registry.terraform.io/hashicorp/time/0.12.1/darwin_arm64/LICENSE.txt
+AzureInfrastructure/Compute/virtual_desktop/.terraform/providers/registry.terraform.io/hashicorp/time/0.12.1/darwin_arm64/terraform-provider-time_v0.12.1_x5
+AzureInfrastructure/Compute/virtual_desktop/graph.jpg
+AzureInfrastructure/Compute/virtual_desktop/graph.png

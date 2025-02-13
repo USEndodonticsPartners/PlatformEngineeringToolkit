@@ -32,6 +32,8 @@ resource "azurerm_virtual_network" "this" {
   tags = merge(local.tags, var.resource_settings.tags)
 
   depends_on = [
+    module.naming,
+    module.tagging
   ]
 
   lifecycle {
