@@ -29,7 +29,7 @@ variable "resource_settings" {
       directory_type = string
       default_share_level_permissions = string
     }))
-    azure_file_share = optional(map(object({
+    azure_file_shares = optional(map(object({
       share_name = string
       quota = optional(number, 50)
     })))
