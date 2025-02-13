@@ -32,7 +32,7 @@ variable "resource_settings" {
         directory_type = optional(string, "AADKERB")
         default_share_level_permissions = optional(string, "None")
       })
-    }), {})
+    }))
     blob_properties = optional(object({
       versioning_enabled       = optional(bool)
       change_feed_enabled      = optional(bool)
