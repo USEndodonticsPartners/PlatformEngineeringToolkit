@@ -7,7 +7,7 @@ resource "azurerm_virtual_machine_extension" "pool_register_this" {
   type                       = "DSC"
   type_handler_version       = "2.73"
   auto_upgrade_minor_version = true
-  automatic_upgrade_enabled  = true
+  automatic_upgrade_enabled  = false
 
   settings = <<-SETTINGS
   {
