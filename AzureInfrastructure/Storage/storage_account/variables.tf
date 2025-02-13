@@ -26,7 +26,7 @@ variable "resource_settings" {
       }), {})
     })), {})
     azure_files = optional(object({
-      name = string
+      share_name = string
       quota = optional(number, 50)
       azure_files_authentication = object({
         directory_type = optional(string, "AADKERB")
