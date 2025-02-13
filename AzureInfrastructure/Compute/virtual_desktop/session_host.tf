@@ -4,12 +4,13 @@ resource "time_rotating" "this" {
 }
 
 resource "azurerm_virtual_desktop_host_pool" "this" {
-  name                 = module.naming.virtual_desktop_host_pool.name_unique
-  location             = lookup(local.azure_locations, var.global_settings.primary_location, "ndl")
-  resource_group_name  = var.resource_settings.resource_group_name
-  type                 = var.resource_settings.type
-  load_balancer_type   = var.resource_settings.load_balancer_type
-  validate_environment = true
+  name                  = module.naming.virtual_desktop_host_pool.name_unique
+  location              = lookup(local.azure_locations, var.global_settings.primary_location, "ndl")
+  resource_group_name   = var.resource_settings.resource_group_name
+  type                  = var.resource_settings.type
+  load_balancer_type    = var.resource_settings.load_balancer_type
+  custom_rdp_properties = "enablerdsaadauth:i:0"
+  validate_environment  = true
 }
 
 resource "azurerm_virtual_desktop_host_pool_registration_info" "this" {
