@@ -30,6 +30,10 @@ resource "azurerm_windows_virtual_machine" "this" {
     storage_account_type = var.resource_settings.session_pool.os_disk.storage_type
   }
 
+  identity {
+    type = "SystemAssigned"
+  }
+
   boot_diagnostics {
     storage_account_uri = var.resource_settings.session_pool.storage_account_uri # Passing a null value will utilize a Managed Storage Account to store Boot Diagnostics
   }
