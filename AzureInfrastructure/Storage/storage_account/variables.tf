@@ -25,14 +25,14 @@ variable "resource_settings" {
         tenant_id   = optional(string)
       }), {})
     })), {})
-    azure_files = optional(object({
+    azure_files_authentication = optional(object({
+      directory_type = string
+      default_share_level_permissions = string
+    }))
+    azure_file_share = optional(map(object({
       share_name = string
       quota = optional(number, 50)
-      azure_files_authentication = optional(object({
-        directory_type = string
-        default_share_level_permissions = string
-      }))
-    }))
+    })))
     blob_properties = optional(object({
       versioning_enabled       = optional(bool)
       change_feed_enabled      = optional(bool)

@@ -1,7 +1,7 @@
 resource "azurerm_storage_share" "this" {
-  for_each = var.resource_settings.kind == "FileStorage" ? var.resource_settings.azure_files : {}
+  for_each = var.resource_settings.azure_file_shares
 
-  name               = module.naming.storage_share.name_unique
+  name               = each.value.share_name
   storage_account_id = azurerm_storage_account.this.id
   quota              = each.value.quota
 
