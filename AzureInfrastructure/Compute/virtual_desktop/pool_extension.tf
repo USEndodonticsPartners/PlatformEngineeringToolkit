@@ -1,6 +1,6 @@
 resource "azurerm_virtual_machine_extension" "this" {
-  count = var.resource_settings.session_pool.count
-
+  for_each                   = var.resource_settings.session_pool.extension
+  count                      = length(azurerm_windows_virtual_machine.this)
   name                       = var.resource_settings.session_pool.extension.name
   virtual_machine_id         = azurerm_windows_virtual_machine.this[count.index].id
   publisher                  = var.resource_settings.session_pool.extension.publisher
