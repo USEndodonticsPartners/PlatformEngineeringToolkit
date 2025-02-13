@@ -30,8 +30,8 @@ resource "azurerm_storage_account" "this" {
   }
 
   azure_files_authentication {
-    directory_type                 = var.resource_settings.azure_files.directory_type
-    default_share_level_permission = var.resource_settings.azure_files.default_share_level_permissions
+    directory_type                 = var.resource_settings.azure_files.azure_files_authentication.directory_type
+    default_share_level_permission = var.resource_settings.azure_files.azure_files_authentication.default_share_level_permissions
   }
 
   # blob_properties {
