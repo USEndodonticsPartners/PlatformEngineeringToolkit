@@ -82,6 +82,7 @@ variable "resource_settings" {
           stop_hosts_when            = string
           wait_time_mins             = number
           capacity_threshold_percent = number
+          min_hosts_percent          = number
           notification_message       = string
           force_logoff_users         = bool
         })
