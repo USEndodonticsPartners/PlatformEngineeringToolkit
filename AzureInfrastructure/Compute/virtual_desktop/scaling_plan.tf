@@ -15,7 +15,7 @@ resource "azurerm_virtual_desktop_scaling_plan" "this" {
     name                                 = var.resource_settings.scaling_plan.schedule.name
     days_of_week                         = var.resource_settings.scaling_plan.schedule.days_of_week
     off_peak_start_time                  = var.resource_settings.scaling_plan.schedule.off_peak.start_time
-    off_peak_load_balancing_algorithm    = var.resource_settings.scaling_plan.schedule.off_peak.load_balancer_algo
+    off_peak_load_balancing_algorithm    = var.resource_settings.scaling_plan.schedule.off_peak.load_balancing_algo
     ramp_up_start_time                   = var.resource_settings.scaling_plan.schedule.ramp_up.start_time
     ramp_up_capacity_threshold_percent   = var.resource_settings.scaling_plan.schedule.ramp_up.capacity_threshold_percent
     ramp_up_load_balancing_algorithm     = var.resource_settings.scaling_plan.schedule.ramp_up.load_balancing_algo
