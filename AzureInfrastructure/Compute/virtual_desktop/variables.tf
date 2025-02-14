@@ -52,7 +52,7 @@ variable "resource_settings" {
       icon_path        = optional(string)
       icon_index       = optional(string)
       description      = optional(string)
-    }), {})
+    }))
     scaling_plan = optional(map(object({
       enabled       = bool
       friendly_name = string
