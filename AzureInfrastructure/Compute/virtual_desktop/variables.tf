@@ -53,7 +53,7 @@ variable "resource_settings" {
       icon_index       = optional(string)
       description      = optional(string)
     }))
-    scaling_plan = optional(map(object({
+    scaling_plan = optional(object({
       enabled       = bool
       friendly_name = string
       time_zone     = string
@@ -86,7 +86,7 @@ variable "resource_settings" {
           force_logoff_users         = bool
         })
       })
-    })))
+    }))
     tags = any
   })
 }
