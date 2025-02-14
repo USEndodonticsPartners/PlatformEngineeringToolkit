@@ -42,17 +42,17 @@ variable "resource_settings" {
         version   = string
       })
     })
-    applications = optional(object({
-      name             = string
-      friendly_name    = string
-      application_path = string
-      cmd_arg_policy   = optional(string)
-      cmd_args         = optional(string)
-      portal_enabled   = optional(bool, true)
-      icon_path        = optional(string)
-      icon_index       = optional(string)
-      description      = optional(string)
-    }))
+    # applications = optional(object({
+    #   name             = string
+    #   friendly_name    = string
+    #   application_path = string
+    #   cmd_arg_policy   = optional(string)
+    #   cmd_args         = optional(string)
+    #   portal_enabled   = optional(bool, true)
+    #   icon_path        = optional(string)
+    #   icon_index       = optional(string)
+    #   description      = optional(string)
+    # }),{})
     scaling_plan = optional(object({
       enabled       = bool
       friendly_name = string
