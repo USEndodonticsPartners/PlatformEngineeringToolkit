@@ -42,7 +42,7 @@ variable "resource_settings" {
         version   = string
       })
     })
-    applications = optional(map(object({
+    applications = optional(object({
       name             = string
       friendly_name    = string
       application_path = string
@@ -52,7 +52,7 @@ variable "resource_settings" {
       icon_path        = optional(string)
       icon_index       = optional(string)
       description      = optional(string)
-    })), {})
+    }), {})
     scaling_plan = optional(map(object({
       enabled       = bool
       friendly_name = string
