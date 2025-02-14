@@ -53,39 +53,40 @@ variable "resource_settings" {
       icon_index       = optional(string)
       description      = optional(string)
     })), {})
-  scaling_plan = optional(map(object({
-    enabled = bool
-    friendly_name = string
-    time_zone = string
-    exclusion_tag = string
-    schedule = object({
-      name = string
-      days_of_week = list(string)
-      peak = object({
-        start_time = string
-        load_balancing_algo = string
+    scaling_plan = optional(map(object({
+      enabled       = bool
+      friendly_name = string
+      time_zone     = string
+      exclusion_tag = string
+      description   = optional(string, "")
+      schedule = object({
+        name         = string
+        days_of_week = list(string)
+        peak = object({
+          start_time          = string
+          load_balancing_algo = string
+        })
+        off_peak = object({
+          start_time          = string
+          load_balancing_algo = string
+        })
+        ramp_up = object({
+          start_time                 = string
+          load_balancing_algo        = string
+          capacity_threshold_percent = number
+          min_hosts_percent          = number
+        })
+        ramp_down = object({
+          start_time                 = string
+          load_balancing_algo        = string
+          stop_hosts_when            = string
+          wait_time_mins             = number
+          capacity_threshold_percent = number
+          notification_message       = string
+          force_logoff_users         = bool
+        })
       })
-      off_peak = object({
-        start_time = string
-        load_balancing_algo = string
-      })
-      ramp_up = object({
-        start_time = string
-        load_balancing_algo = string
-        capacity_threshold_percent = number
-        min_hosts_percent = number
-      })
-      ramp_down = object({
-        start_time = string
-        load_balancing_algo = string
-        stop_hosts_when = string
-        wait_time_mins = number
-        capacity_threshold_percent = number
-        notification_message = string
-        force_logoff_users = bool
-      })
-    })
-  })))
+    })))
     tags = any
   })
 }

@@ -1,7 +1,7 @@
 resource "azurerm_virtual_desktop_scaling_plan" "this" {
   name                = module.naming.virtual_desktop_scaling_plan.name
   location            = lookup(local.azure_locations, var.global_settings.primary_location, "ndl")
-  resource_group_name = var.resource_settings.host_pool.resource_group_name
+  resource_group_name = var.resource_settings.resource_group_name
   description         = var.resource_settings.scaling_plan.description
   friendly_name       = var.resource_settings.scaling_plan.friendly_name
   time_zone           = var.resource_settings.scaling_plan.time_zone # Change as needed

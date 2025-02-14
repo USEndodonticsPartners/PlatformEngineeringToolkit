@@ -26,12 +26,12 @@ variable "resource_settings" {
       }), {})
     })), {})
     azure_files_authentication = optional(object({
-      directory_type = string
+      directory_type                  = string
       default_share_level_permissions = string
     }))
     azure_file_shares = optional(map(object({
       share_name = string
-      quota = optional(number, 50)
+      quota      = optional(number, 50)
     })))
     blob_properties = optional(object({
       versioning_enabled       = optional(bool)
